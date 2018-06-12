@@ -1,9 +1,10 @@
-<div>
+<div *mobxAutorun="{ dontDetach: true }">
 
   <h3>Todos : </h3>
+  <p> Total price : {{ store.countTotalPrice }} </p>
   <ul>
-    <li *ngFor="let todo of todos$ | async; let i = index">
-      <p>{{ todo.name + ' - ' + todo.action }},
+    <li *ngFor="let todo of store.state.todos; let i = index">
+      <p>{{ todo.name + ' - ' + todo.price }},
         <button (click)="deleteTodo(i)" > delete </button>
       </p>
     </li>

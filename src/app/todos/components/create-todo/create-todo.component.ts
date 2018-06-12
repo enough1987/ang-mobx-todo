@@ -1,20 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { AddTodo } from '../../+store/todo.actions';
-import { AppState } from '../../../+store/app.state';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { TodoStore } from '../../todos.store';
 
 @Component({
   selector: 'app-create-todo',
   templateUrl: './create-todo.component.html',
-  styleUrls: ['./create-todo.component.css']
+  styleUrls: ['./create-todo.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateTodoComponent {
 
-  constructor(private store: Store<AppState>) {
+  constructor(public store: TodoStore) {
   }
 
-  public addTodo(name: string, action: string) {
-    this.store.dispatch(new AddTodo({name, action}));
+  public addTodo(name: string, price: number) {
+    this.store.addTodo(name, price);
   }
 
 }
